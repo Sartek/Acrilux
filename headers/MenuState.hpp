@@ -1,7 +1,7 @@
 #ifndef MENUSTATE
 #define MENUSTATE
 #include <SFML/Graphics.hpp>
-namespace LW
+namespace AX
 {
     class MenuState
     {
@@ -12,7 +12,6 @@ namespace LW
         int Run();
     private:
         sf::RenderWindow* Window;
-        sf::Font Arial;
         sf::Text Text1;
         void PollEvent();
     };

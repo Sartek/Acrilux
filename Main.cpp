@@ -4,26 +4,26 @@
 
 int main()
 {
-    sf::RenderWindow Window(sf::VideoMode(640, 480), "Lone Walker", sf::Style::Close);
-    Window.SetFramerateLimit(60);
+    sf::RenderWindow Window(sf::VideoMode(640, 480), "Acrilux", sf::Style::Close);
+    //Window.setFramerateLimit(60);
     sf::Image icon;
-    if (!icon.LoadFromFile("sprites/icon.bmp"))
+    if (!icon.loadFromFile("textures/icon.bmp"))
         return EXIT_FAILURE;
-    Window.SetIcon(64,64,icon.GetPixelsPtr());
+    Window.setIcon(64,64,icon.getPixelsPtr());
 
     int State = 1;
 
-    LW::MenuState Menu(&Window);
-    LW::GameState Game(&Window);
+    AX::MenuState Menu(&Window);
+    AX::GameState Game(&Window);
 
 
-    while(Window.IsOpened())
+    while(Window.isOpen())
     {
         sf::Event event;
-        while (Window.PollEvent(event))
+        while (Window.pollEvent(event))
         {
-            if (event.Type == sf::Event::Closed)
-                Window.Close();
+            if (event.type == sf::Event::Closed)
+                Window.close();
         }
 
         switch (State)

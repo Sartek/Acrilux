@@ -1,7 +1,7 @@
 #ifndef GAMESTATE
 #define GAMESTATE
 #include <SFML/Graphics.hpp>
-namespace LW
+namespace AX
 {
     class GameState
     {

@@ -1,14 +1,10 @@
 #include "headers/MenuState.hpp"
-using namespace LW;
+using namespace AX;
 MenuState::MenuState(sf::RenderWindow* Window)
 {
     this->Window = Window;
-    if (!Arial.LoadFromFile("fonts/arial.ttf"))
-        Window->Close();
-    Text1.SetString("Press Any Key");
-    Text1.SetFont(Arial);
-    Text1.SetX(640/4*1.5);
-    Text1.SetY(440);
+    Text1.setString("Press Any Key");
+    Text1.setPosition( 640/4*1.5, 440 );
     State = 1;
 
 }
@@ -18,9 +14,9 @@ MenuState::~MenuState()
 }
 int MenuState::Run()
 {
-    MenuState::Window->Clear();
-    MenuState::Window->Draw(Text1);
-    MenuState::Window->Display();
+    MenuState::Window->clear();
+    MenuState::Window->draw(Text1);
+    MenuState::Window->display();
     MenuState::PollEvent();
 
     return MenuState::State;
@@ -28,11 +24,11 @@ int MenuState::Run()
 void MenuState::PollEvent()
 {
         sf::Event event;
-        while (Window->PollEvent(event))
+        while (Window->pollEvent(event))
         {
-            if (event.Type == sf::Event::Closed)
-                Window->Close();
-            if(event.Type ==sf::Event::KeyPressed)
+            if (event.type == sf::Event::Closed)
+                Window->close();
+            if(event.type ==sf::Event::KeyPressed)
                 MenuState::State = 2;
         }
 }
