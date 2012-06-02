@@ -11,7 +11,7 @@ class ObjectManager
 		ObjectManager();
 		~ObjectManager();
 		int newObject(int x,int y,bool draw,int texture_id);
-		Object& getObject(unsigned int id);
+		Object& getObjectByID(unsigned int id);
 		unsigned int objectListSize();
 	private:
 		std::vector<Object> objectList;

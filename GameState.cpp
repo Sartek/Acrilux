@@ -41,7 +41,7 @@ void GameState::Render()
 	GameState::Window->clear(sf::Color(0, 0, 0));
 	for(unsigned int i = 0;i<Objects.objectListSize();i++)
 	{
-		Object object = Objects.getObject(i);
+		Object object = Objects.getObjectByID(i);
 		if(object.isDrawable())
 		{
 			object.sprite.setTexture(Textures.GetTexture(object.textureID()));

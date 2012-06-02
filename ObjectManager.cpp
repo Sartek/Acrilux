@@ -18,7 +18,7 @@ int ObjectManager::newObject(int x,int y,bool draw,int texture_id)
 	return id;
 }
 
-Object& ObjectManager::getObject(unsigned int id)
+Object& ObjectManager::getObjectByID(unsigned int id)
 {
 	return objectList.at(id);
 }
