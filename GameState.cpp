@@ -5,16 +5,20 @@ GameState::GameState(sf::RenderWindow* Window)
     this->Window = Window;
     State = 2;
 }
+
 GameState::~GameState()
 {
 
 }
+
 int GameState::Run()
 {
     GameState::PollEvent();
+    GameState::Update();
     GameState::Render();
     return State;
 }
+
 void GameState::PollEvent()
 {
 	sf::Event event;
@@ -26,8 +30,23 @@ void GameState::PollEvent()
 			GameState::State = 1;
 	}
 }
+
+void GameState::Update()
+{
+
+}
+
 void GameState::Render()
 {
 	GameState::Window->clear(sf::Color(0, 0, 0));
+	for(unsigned int i = 0;i<Objects.objectListSize();i++)
+	{
+		Object object = Objects.getObject(i);
+		if(object.isDrawable())
+		{
+			object.sprite.setTexture(Textures.GetTexture(object.textureID()));
+			GameState::Window->draw(object.sprite);
+		}
+	}
     GameState::Window->display();
 }

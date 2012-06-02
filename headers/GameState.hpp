@@ -2,6 +2,8 @@
 #define GAMESTATE
 #include <SFML/Graphics.hpp>
 #include "../headers/TextureManager.hpp"
+#include "../headers/ObjectManager.hpp"
+#include "../headers/Object.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -19,7 +21,9 @@ namespace AX
         sf::RenderWindow* Window;
         void PollEvent();
         void Render();
+        void Update();
         TextureManager Textures;
+        ObjectManager Objects;
     };
 }
 

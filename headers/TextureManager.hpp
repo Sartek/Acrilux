@@ -18,4 +18,4 @@ public:
 	sf::Texture& GetTexture(int id);
 };
 
-#endif
+#endif // TEXTUREMANAGER
