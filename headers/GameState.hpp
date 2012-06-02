@@ -1,6 +1,11 @@
 #ifndef GAMESTATE
 #define GAMESTATE
 #include <SFML/Graphics.hpp>
+#include "../headers/TextureManager.hpp"
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <sstream>
 namespace AX
 {
     class GameState
@@ -13,6 +18,8 @@ namespace AX
     private:
         sf::RenderWindow* Window;
         void PollEvent();
+        void Render();
+        TextureManager Textures;
     };
 }
 
