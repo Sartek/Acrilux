@@ -4,6 +4,7 @@ GameState::GameState(sf::RenderWindow* Window)
 {
     this->Window = Window;
     State = 2;
+    Objects.newObject("Player",32,32,true,Textures.LoadTexture("textures/grass.png"));
 }
 
 GameState::~GameState()
