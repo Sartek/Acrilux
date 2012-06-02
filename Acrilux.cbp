@@ -45,8 +45,14 @@
 		<Unit filename="GameState.cpp" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="MenuState.cpp" />
+		<Unit filename="Object.cpp" />
+		<Unit filename="ObjectManager.cpp" />
+		<Unit filename="TextureManager.cpp" />
 		<Unit filename="headers\GameState.hpp" />
 		<Unit filename="headers\MenuState.hpp" />
+		<Unit filename="headers\Object.hpp" />
+		<Unit filename="headers\ObjectManager.hpp" />
+		<Unit filename="headers\TextureManager.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
