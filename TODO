@@ -1,0 +1,5 @@
+Work on readme.
+Decide on a licence.
+Add Physics cabable of working on 2d objects.
+Add Networking via udp with error detection.
+Add multithreading via the actor model.
