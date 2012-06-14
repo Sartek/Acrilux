@@ -28,13 +28,13 @@ unsigned int ObjectManager::newObject(std::string name,int x,int y,bool draw,int
 	return id;
 }
 
-Object& ObjectManager::getObjectByID(unsigned int id)
+Object* ObjectManager::getObjectByID(unsigned int id)
 {
-	return objectList.at(id);
+	return &objectList.at(id);
 }
-Object& ObjectManager::getObjectByName(std::string name)
+Object* ObjectManager::getObjectByName(std::string name)
 {
-	int id;
+	int id;//WARNING UNINITALIZED
 	for(unsigned int i = 0;i<objectNames.size();i++)
 	{
 		if(objectNames[i] == name)
@@ -43,7 +43,7 @@ Object& ObjectManager::getObjectByName(std::string name)
 			break;
 		}
 	}
-	return objectList.at(id);
+	return &objectList.at(id);
 }
 
 unsigned int ObjectManager::objectListSize()

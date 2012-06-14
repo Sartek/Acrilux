@@ -24,6 +24,8 @@ namespace AX
         void Update();
         TextureManager Textures;
         ObjectManager Objects;
+        sf::Time dt;
+        sf::Clock deltaClock;
     };
 }
 
