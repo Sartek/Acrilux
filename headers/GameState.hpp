@@ -4,6 +4,8 @@
 #include "../headers/TextureManager.hpp"
 #include "../headers/ObjectManager.hpp"
 #include "../headers/Object.hpp"
+#include "../headers/Level.hpp"
+#include "../headers/TileSet.hpp"
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -26,6 +28,9 @@ namespace AX
         ObjectManager Objects;
         sf::Time dt;
         sf::Clock deltaClock;
+        sf::View camera;
+        Level level;
+        TileSet tileset;
     };
 }
 

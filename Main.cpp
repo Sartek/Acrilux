@@ -4,7 +4,7 @@
 
 int main()
 {
-    sf::RenderWindow Window(sf::VideoMode(640, 480), "Acrilux", sf::Style::Close);
+    sf::RenderWindow Window(sf::VideoMode(800, 600), "Acrilux", sf::Style::Close);
     //Window.setFramerateLimit(60);
     sf::Image icon;
     if (!icon.loadFromFile("textures/icon.bmp"))

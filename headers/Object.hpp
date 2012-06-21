@@ -12,6 +12,8 @@ class Object
 		sf::Vector2f getPosition();
 		sf::Vector2f getPositionL();
 		sf::Vector2f getVelocity();
+		void update(sf::Time dt);
+		void setVelocity(float x,float y);
 		void setPosition(float x,float y);
 		sf::Sprite sprite;
 		int textureID();

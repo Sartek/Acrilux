@@ -171,3 +171,7 @@ pip-log.txt
 
 Acrilux.depend
 Acrilux.layout
+
+# XCF
+*.xcf
+*.XCF

@@ -1,4 +1,4 @@
-#include "headers\Object.hpp"
+#include "headers/Object.hpp"
 
 Object::Object(int x,int y,bool draw,int texture_id)
 {
@@ -39,6 +39,17 @@ sf::Vector2f Object::getPositionL()
 sf::Vector2f Object::getVelocity()
 {
 	return Object::velocity;
+}
+
+void Object::setVelocity(float x,float y)
+{
+	Object::velocity.x = x;
+	Object::velocity.y = y;
+}
+
+void Object::update(sf::Time dt)
+{
+	Object::setPosition(Object::getPosition().x + (Object::getVelocity().x * dt.asSeconds()),Object::getPosition().y + (Object::getVelocity().y * dt.asSeconds()));
 }
 
 float Object::getWidth()
