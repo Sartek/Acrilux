@@ -148,6 +148,20 @@ void GameState::Render()
 {
 	GameState::Window->clear(sf::Color(0, 96, 254));
 	GameState::Window->setView(camera);
+	sf::Sprite levelArea[level.getHeight()][level.getWidth()];
+
+	for(int i = 0;i< level.getWidth();i++)
+	{
+		for(int ii = 0;ii< (level.getHeight());ii++)
+		{
+			levelArea[i][ii].setPosition(i*tileset.getHeight(),ii*tileset.getWidth());
+			levelArea[i][ii].setTexture(tileset.getTile(level.getTile(i,ii)));
+			GameState::Window->draw(levelArea[i][ii]);
+			//std::cout << level.getTile(i,ii) << ",";
+		}
+		//std::cout << level.getTile(i,level.getWidth()-1) << "\n";
+	}
+
 	for(unsigned int i = 0;i<Objects.objectListSize();i++)
 	{
 		Object* object = Objects.getObjectByID(i);
