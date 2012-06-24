@@ -20,9 +20,9 @@ void TileSet::loadTileSet(std::string file,int w,int h)
 	sf::Image tempimage;
 	tempimage.create(w,h);
 	tiles.resize(tilesetSize.x/w + tilesetSize.y/h);
-	for(int i = 0;i < tilesetSize.x/w;i++)
+	for(unsigned int i = 0;i < tilesetSize.x/w;i++)
 	{
-		for(int ii = 0;ii < tilesetSize.y/h;ii++)
+		for(unsigned int ii = 0;ii < tilesetSize.y/h;ii++)
 		{
 			sf::IntRect sourceRect = sf::IntRect(i*w,ii*h,w,h);
 			tempimage.copy(TileSet::tileset,0,0,sourceRect, false);

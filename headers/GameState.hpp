@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <vector>
 namespace AX
 {
     class GameState
@@ -31,6 +32,7 @@ namespace AX
         sf::View camera;
         Level level;
         TileSet tileset;
+        std::vector<std::vector<sf::Sprite*> > levelArea;
     };
 }
 

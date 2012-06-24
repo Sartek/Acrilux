@@ -5,6 +5,7 @@ GameState::GameState(sf::RenderWindow* Window)
     this->Window = Window;
     State = 2;
     Objects.newObject("Player",32,32,true,Textures.LoadTexture("textures/Player_AA.png"));
+    Objects.newObject(96,96,true,Textures.LoadTexture("textures/Player_AA.png"));
 	camera.reset(sf::FloatRect(0, 0, this->Window->getSize().x, this->Window->getSize().y));
 	tileset.loadTileSet("textures/tileset.png",32,32);
 	for(int i = 0;i< level.getHeight();i++)
@@ -14,6 +15,20 @@ GameState::GameState(sf::RenderWindow* Window)
 			std::cout << level.getTile(i,ii) << ",";
 		}
 		std::cout << level.getTile(i,level.getWidth()-1) << "\n";
+	}
+
+	levelArea.resize(level.getWidth());
+    for (int i = 0; i < level.getHeight(); i++)
+    {
+        levelArea.at(i).resize(level.getHeight());
+    }
+
+	for(int i = 0; i < level.getWidth(); i++)
+	{
+		for (int ii = 0; ii < level.getHeight(); ii++)
+		{
+			levelArea[i][ii] = new sf::Sprite;
+		}
 	}
 }
 
@@ -89,7 +104,6 @@ void GameState::Update()
 		}
 		//Player->setPosition(PlayerPosition.x,PlayerPosition.y);
 		GameState::camera.setCenter(Player->getPosition().x,Player->getPosition().y);
-
 	}
 
 	//physics and collisons
@@ -148,18 +162,15 @@ void GameState::Render()
 {
 	GameState::Window->clear(sf::Color(0, 96, 254));
 	GameState::Window->setView(camera);
-	sf::Sprite levelArea[level.getHeight()][level.getWidth()];
 
-	for(int i = 0;i< level.getWidth();i++)
+	for(int i = 0;i< level.getHeight();i++)
 	{
-		for(int ii = 0;ii< (level.getHeight());ii++)
+		for(int ii = 0;ii< (level.getWidth());ii++)
 		{
-			levelArea[i][ii].setPosition(i*tileset.getHeight(),ii*tileset.getWidth());
-			levelArea[i][ii].setTexture(tileset.getTile(level.getTile(i,ii)));
-			GameState::Window->draw(levelArea[i][ii]);
-			//std::cout << level.getTile(i,ii) << ",";
+			levelArea[i][ii]->setPosition(i*tileset.getHeight(),ii*tileset.getWidth());
+			levelArea[i][ii]->setTexture(tileset.getTile(level.getTile(i,ii)));
+			GameState::Window->draw((*levelArea[i][ii]));
 		}
-		//std::cout << level.getTile(i,level.getWidth()-1) << "\n";
 	}
 
 	for(unsigned int i = 0;i<Objects.objectListSize();i++)
