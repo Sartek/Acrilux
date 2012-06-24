@@ -11,6 +11,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <math.h>
 namespace AX
 {
     class GameState

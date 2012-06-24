@@ -15,15 +15,15 @@ void Level::loadLevel()
 	Level::width = 32;
 	Level::height = 32;
     Level::level.resize(Level::width);
-    for (int i = 0; i < Level::height; i++)
+    for (int i = 0; i < Level::width; i++)
     {
         level.at(i).resize(Level::height, 0);
     }
-	for(int i = 0; i < Level::getWidth(); i++)
+	for(int y = 0; y < Level::getHeight(); y++)
 	{
-		for (int ii = 0; ii < Level::getHeight(); ii++)
+		for (int x = 0; x < Level::getWidth(); x++)
 		{
-			Level::level[i][ii] = new Tile(ii%2+1);
+			Level::level[x][y] = new Tile(x%2+1);
 		}
 	}
 }

@@ -8,26 +8,26 @@ GameState::GameState(sf::RenderWindow* Window)
     Objects.newObject(96,96,true,Textures.LoadTexture("textures/Player_AA.png"));
 	camera.reset(sf::FloatRect(0, 0, this->Window->getSize().x, this->Window->getSize().y));
 	tileset.loadTileSet("textures/tileset.png",32,32);
-	for(int i = 0;i< level.getHeight();i++)
+	for(int y = 0;y< level.getHeight();y++)
 	{
-		for(int ii = 0;ii< (level.getWidth()-1);ii++)
+		for(int x = 0;x< (level.getWidth()-1);x++)
 		{
-			std::cout << level.getTile(i,ii) << ",";
+			std::cout << level.getTile(x,y) << ",";
 		}
-		std::cout << level.getTile(i,level.getWidth()-1) << "\n";
+		std::cout << level.getTile(level.getWidth()-1,y) << "\n";
 	}
 
-	levelArea.resize(level.getWidth());
-    for (int i = 0; i < level.getHeight(); i++)
+	levelArea.resize(Window->getSize().x / tileset.getWidth());
+    for (unsigned int x = 0; x <(Window->getSize().x / tileset.getWidth()); x++)
     {
-        levelArea.at(i).resize(level.getHeight());
+        levelArea.at(x).resize(Window->getSize().y / tileset.getHeight());
     }
 
-	for(int i = 0; i < level.getWidth(); i++)
+	for(unsigned int x = 0; x <  (Window->getSize().x / tileset.getWidth()); x++)
 	{
-		for (int ii = 0; ii < level.getHeight(); ii++)
+		for (unsigned int y = 0; y < (Window->getSize().y / tileset.getHeight()); y++)
 		{
-			levelArea[i][ii] = new sf::Sprite;
+			levelArea[x][y] = new sf::Sprite;
 		}
 	}
 }
@@ -103,7 +103,7 @@ void GameState::Update()
 			Player->setVelocity(0,Player->getVelocity().y);
 		}
 		//Player->setPosition(PlayerPosition.x,PlayerPosition.y);
-		GameState::camera.setCenter(Player->getPosition().x,Player->getPosition().y);
+		GameState::camera.setCenter(Player->getPosition().x-Player->getWidth()/2,Player->getPosition().y-Player->getHeight()/2);//may not work
 	}
 
 	//physics and collisons
@@ -163,6 +163,27 @@ void GameState::Render()
 	GameState::Window->clear(sf::Color(0, 96, 254));
 	GameState::Window->setView(camera);
 
+	{
+		sf::Vector2f position;
+		position.x = Objects.getObjectByName("Player")->getPosition().x - (Window->getSize().x / 2);
+		position.y = Objects.getObjectByName("Player")->getPosition().y - (Window->getSize().y / 2);
+		sf::Vector2i offset;
+		int width = tileset.getWidth();
+		int height = tileset.getHeight();
+		offset.x =(int)(position.x) % width;
+		offset.y =(int)(position.y) % height;
+
+		for(int x = 0;x<(Window->getSize().x / tileset.getWidth());x++)
+		{
+			for(int y = 0;y<(Window->getSize().y / tileset.getHeight());y++)
+			{
+				levelArea[x][y]->setPosition(x * width - offset.x + position.x,y * height - offset.y + position.y);
+				levelArea[x][y]->setTexture(tileset.getTile(level.getTile(x+((int)position.x/width),y+((int)position.y/height))));
+				GameState::Window->draw((*levelArea[x][y]));
+			}
+		}
+	}
+	/*
 	for(int i = 0;i< level.getHeight();i++)
 	{
 		for(int ii = 0;ii< (level.getWidth());ii++)
@@ -172,6 +193,7 @@ void GameState::Render()
 			GameState::Window->draw((*levelArea[i][ii]));
 		}
 	}
+	*/
 
 	for(unsigned int i = 0;i<Objects.objectListSize();i++)
 	{
