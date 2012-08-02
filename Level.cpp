@@ -30,9 +30,9 @@ void Level::loadLevel()
 
 int Level::getTile(int x,int y)
 {
-	if(x < Level::getWidth() and x >= 0)
+	if(x < Level::getWidth() && x >= 0)
 	{
-		if(y < Level::getHeight() and y >= 0)
+		if(y < Level::getHeight() && y >= 0)
 		{
 			return Level::level[x][y]->getID();
 		}

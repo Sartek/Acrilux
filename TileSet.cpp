@@ -20,13 +20,13 @@ void TileSet::loadTileSet(std::string file,int w,int h)
 	sf::Image tempimage;
 	tempimage.create(w,h);
 	tiles.resize(tilesetSize.x/w + tilesetSize.y/h);
-	for(unsigned int i = 0;i < tilesetSize.x/w;i++)
+	for(unsigned int x = 0;x < tilesetSize.x/w;x++)
 	{
-		for(unsigned int ii = 0;ii < tilesetSize.y/h;ii++)
+		for(unsigned int y = 0;y < tilesetSize.y/h;y++)
 		{
-			sf::IntRect sourceRect = sf::IntRect(i*w,ii*h,w,h);
+			sf::IntRect sourceRect = sf::IntRect(x*w,y*h,w,h);
 			tempimage.copy(TileSet::tileset,0,0,sourceRect, false);
-			tiles.at(i).loadFromImage(tempimage);
+			tiles.at(x).loadFromImage(tempimage);
 		}
 	}
 }

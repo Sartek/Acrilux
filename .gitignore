@@ -42,6 +42,8 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.sln
+*.vcxproj*
 
 # Build results
 **/[Dd]ebug/
@@ -175,3 +177,8 @@ Acrilux.layout
 # XCF
 *.xcf
 *.XCF
+# TGA
+*.tga
+
+#Miscellaneous
+*.caw
