@@ -10,6 +10,7 @@ class Level
 		Level();
 		~Level();
 		int getTile(int x,int y);
+		bool tileIsSolid(int x,int y);
 		int getWidth();
 		int getHeight();
 		void loadLevel();

@@ -10,7 +10,7 @@ ObjectManager::~ObjectManager()
 
 }
 
-unsigned int ObjectManager::newObject(int x,int y,bool draw,int texture_id)
+unsigned int ObjectManager::newObject(float x,float y,bool draw,int texture_id)
 {
 	Object tempobject(x,y,draw,texture_id);
 	objectList.push_back(tempobject);
@@ -18,7 +18,7 @@ unsigned int ObjectManager::newObject(int x,int y,bool draw,int texture_id)
 	return id;
 }
 
-unsigned int ObjectManager::newObject(std::string name,int x,int y,bool draw,int texture_id)
+unsigned int ObjectManager::newObject(std::string name,float x,float y,bool draw,int texture_id)
 {
 	Object tempobject(x,y,draw,texture_id);
 	objectList.push_back(tempobject);
@@ -34,7 +34,7 @@ Object* ObjectManager::getObjectByID(unsigned int id)
 }
 Object* ObjectManager::getObjectByName(std::string name)
 {
-	int id;//WARNING UNINITALIZED
+	int id = -1;
 	for(unsigned int i = 0;i<objectNames.size();i++)
 	{
 		if(objectNames[i] == name)

@@ -10,8 +10,8 @@ class ObjectManager
 	public:
 		ObjectManager();
 		~ObjectManager();
-		unsigned int newObject(int x,int y,bool draw,int texture_id);
-		unsigned int newObject(std::string name,int x,int y,bool draw,int texture_id);
+		unsigned int newObject(float x,float y,bool draw,int texture_id);
+		unsigned int newObject(std::string name,float x,float y,bool draw,int texture_id);
 		Object* getObjectByID(unsigned int id);
 		unsigned int objectListSize();
 		Object* getObjectByName(std::string name);

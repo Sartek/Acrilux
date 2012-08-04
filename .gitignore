@@ -182,3 +182,17 @@ Acrilux.layout
 
 #Miscellaneous
 *.caw
+*.dll
+*.lastbuildstate
+*.pdb
+*.log
+*.tlog
+*.rc
+*.manifest*
+Release\*
+Debug\*
+*.exe
+*.imd
+*.map
+*.tbp*
+*.idb

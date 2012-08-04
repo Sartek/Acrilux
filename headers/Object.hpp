@@ -6,19 +6,19 @@
 class Object
 {
 	public:
-		Object(int x,int y,bool draw,int texture_id);
+		Object(float x,float y,bool draw,int texture_id);
 		~Object();
 		bool isDrawable();
 		sf::Vector2f getPosition();
 		sf::Vector2f getPositionL();
 		sf::Vector2f getVelocity();
-		void update(sf::Time dt);
+		virtual void update(sf::Time dt);
 		void setVelocity(float x,float y);
 		void setPosition(float x,float y);
-		sf::Sprite sprite;
 		int textureID();
 		float getWidth();
 		float getHeight();
+		void Draw();
 
 	private:
 		int textureid;
@@ -26,6 +26,7 @@ class Object
 		sf::Vector2f position;
 		sf::Vector2f positionL;
 		sf::Vector2f velocity;
+		sf::Sprite sprite;
 
 };
 

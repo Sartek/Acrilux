@@ -1,11 +1,13 @@
 #include "headers/Object.hpp"
+#include "headers/Game.hpp"
 
-Object::Object(int x,int y,bool draw,int texture_id)
+Object::Object(float x,float y,bool draw,int texture_id)
 {
 	Object::setPosition(x,y);
 	Object::drawable = draw;
 	Object::sprite.setPosition(Object::position.x,Object::position.y);
 	textureid = texture_id;
+	Object::sprite.setTexture(Game::GetTextureManager().GetTexture(textureid));
 }
 
 Object::~Object()
@@ -65,4 +67,8 @@ float Object::getHeight()
 int Object::textureID()
 {
 	return textureid;
+}
+void Object::Draw()
+{
+	Game::GetWindow().draw(Object::sprite);
 }

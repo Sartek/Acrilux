@@ -23,7 +23,7 @@ void Level::loadLevel()
 	{
 		for (int x = 0; x < Level::getWidth(); x++)
 		{
-			Level::level[x][y] = new Tile(x%2+1);
+			Level::level[x][y] = new Tile(x%2+1,0);
 		}
 	}
 }
@@ -46,4 +46,15 @@ int Level::getWidth()
 int Level::getHeight()
 {
 	return Level::height;
+}
+bool Level::tileIsSolid(int x,int y)
+{
+	if(x < Level::getWidth() && x >= 0)
+	{
+		if(y < Level::getHeight() && y >= 0)
+		{
+			return Level::level[x][y]->isSolid();
+		}
+	}
+	return 1;
 }

@@ -13,10 +13,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-march=core2" />
-					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
 					<Add option="-g" />
 					<Add option="-DSFML_STATIC" />
 				</Compiler>
@@ -33,7 +29,11 @@
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-march=core2" />
+					<Add option="-O3" />
 					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -82,7 +82,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="GameState.cpp" />
+		<Unit filename="Game.cpp" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="MenuState.cpp" />
@@ -91,7 +91,7 @@
 		<Unit filename="TextureManager.cpp" />
 		<Unit filename="Tile.cpp" />
 		<Unit filename="TileSet.cpp" />
-		<Unit filename="headers\GameState.hpp" />
+		<Unit filename="headers\Game.hpp" />
 		<Unit filename="headers\Level.hpp" />
 		<Unit filename="headers\MenuState.hpp" />
 		<Unit filename="headers\Object.hpp" />
