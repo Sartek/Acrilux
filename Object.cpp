@@ -1,17 +1,26 @@
 #include "headers/Object.hpp"
 #include "headers/Game.hpp"
 
-Object::Object(float x,float y,bool draw,int texture_id)
+Object::Object() :
+_isLoaded(false)
 {
-	Object::setPosition(x,y);
-	Object::drawable = draw;
-	Object::sprite.setPosition(Object::position.x,Object::position.y);
-	textureid = texture_id;
-	Object::sprite.setTexture(Game::GetTextureManager().GetTexture(textureid));
 }
 
 Object::~Object()
 {
+}
+
+void Object::Load(float x,float y,bool draw,int texture_id)
+{
+	if(!_isLoaded)
+	{
+		_isLoaded = true;
+		Object::setPosition(x,y);
+		Object::drawable = draw;
+		Object::sprite.setPosition(Object::position.x,Object::position.y);
+		textureid = texture_id;
+		Object::sprite.setTexture(Game::GetTextureManager().GetTexture(textureid));
+	}
 }
 
 bool Object::isDrawable()
@@ -49,7 +58,7 @@ void Object::setVelocity(float x,float y)
 	Object::velocity.y = y;
 }
 
-void Object::update(sf::Time dt)
+void Object::Update(sf::Time dt)
 {
 	Object::setPosition(Object::getPosition().x + (Object::getVelocity().x * dt.asSeconds()),Object::getPosition().y + (Object::getVelocity().y * dt.asSeconds()));
 }

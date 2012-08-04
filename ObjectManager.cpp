@@ -12,25 +12,63 @@ ObjectManager::~ObjectManager()
 
 unsigned int ObjectManager::newObject(float x,float y,bool draw,int texture_id)
 {
-	Object tempobject(x,y,draw,texture_id);
+	Object* tempobject = new Object;
+	tempobject->Load(x,y,draw,texture_id);
 	objectList.push_back(tempobject);
 	int id = objectList.size() - 1;
 	return id;
 }
+unsigned int ObjectManager::newObject(float x,float y,std::string type,bool draw,int texture_id)
+{
+	Object* tempobject;
+	if(type == "Player")
+	{
+		tempobject = new Player;
+	}
+	else
+	{
+		tempobject = new Object;
+	}
+	tempobject->Load(x,y,draw,texture_id);
+	objectList.push_back(tempobject);
+	unsigned int id = objectList.size() - 1;
+	return id;
+
+}
 
 unsigned int ObjectManager::newObject(std::string name,float x,float y,bool draw,int texture_id)
 {
-	Object tempobject(x,y,draw,texture_id);
+	Object* tempobject = new Object;
+	tempobject->Load(x,y,draw,texture_id);
 	objectList.push_back(tempobject);
 	unsigned int id = objectList.size() - 1;
 	objectNames.push_back(name);
 	objectNameIDS.push_back(id);
 	return id;
 }
+unsigned int ObjectManager::newObject(std::string name,float x,float y,std::string type,bool draw,int texture_id)
+{
+	Object* tempobject;
+	if(type == "Player")
+	{
+		tempobject = new Player;
+	}
+	else
+	{
+		tempobject = new Object;
+	}
+	tempobject->Load(x,y,draw,texture_id);
+	objectList.push_back(tempobject);
+	unsigned int id = objectList.size() - 1;
+	objectNames.push_back(name);
+	objectNameIDS.push_back(id);
+	return id;
+
+}
 
 Object* ObjectManager::getObjectByID(unsigned int id)
 {
-	return &objectList.at(id);
+	return objectList.at(id);
 }
 Object* ObjectManager::getObjectByName(std::string name)
 {
@@ -43,7 +81,7 @@ Object* ObjectManager::getObjectByName(std::string name)
 			break;
 		}
 	}
-	return &objectList.at(id);
+	return objectList.at(id);
 }
 
 unsigned int ObjectManager::objectListSize()

@@ -10,7 +10,7 @@ int Game::Start()
         return 1;
     Window.setIcon(64,64,icon.getPixelsPtr());
 
-    Objects.newObject("Player",32,32,true,Textures.LoadTexture("textures/Player_AA.png"));
+    Objects.newObject("Player",32,32,"Player",true,Textures.LoadTexture("textures/Player_AA.png"));
 	camera.reset(sf::FloatRect(0, 0, (float)Window.getSize().x, (float)Window.getSize().y));
 	tileset.loadTileSet("textures/tileset.png",32,32);
 
@@ -70,36 +70,12 @@ void Game::PollEvent()
 
 void Game::Update()
 {
-	//Player
+	Object* Player = Objects.getObjectByName("Player");
+	for(unsigned int i = 0;i<Objects.objectListSize();i++)
 	{
-		Object* Player = Objects.getObjectByName("Player");
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			Player->setVelocity(Player->getVelocity().x,-256);
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			Player->setVelocity(Player->getVelocity().x,256);
-		}
-		else
-		{
-			Player->setVelocity(Player->getVelocity().x,0);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			Player->setVelocity(-256,Player->getVelocity().y);
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			Player->setVelocity(256,Player->getVelocity().y);
-		}
-		else
-		{
-			Player->setVelocity(0,Player->getVelocity().y);
-		}
-		Player->update(dt);
-		Game::camera.setCenter(Player->getPosition().x,Player->getPosition().y);//may not work
+		Objects.getObjectByID(i)->Update(dt);
 	}
+	Game::camera.setCenter(Player->getPosition().x,Player->getPosition().y);//may not work
 }
 
 void Game::Render()
