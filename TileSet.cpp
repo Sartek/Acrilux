@@ -11,8 +11,8 @@ TileSet::~TileSet()
 
 void TileSet::loadTileSet(std::string file,int w,int h)
 {
-	TileSet::width = w;
-	TileSet::height = h;
+	TileSet::size.x = w;
+	TileSet::size.y = h;
 	TileSet::tileset.loadFromFile(file);
 	sf::Vector2u tilesetSize;
 	tilesetSize.x = TileSet::tileset.getSize().x;
@@ -31,14 +31,9 @@ void TileSet::loadTileSet(std::string file,int w,int h)
 	}
 }
 
-int TileSet::getWidth()
+sf::Vector2i TileSet::getSize()
 {
-	return TileSet::width;
-}
-
-int TileSet::getHeight()
-{
-	return TileSet::height;
+	return TileSet::size;
 }
 
 sf::Texture& TileSet::getTile(int id)

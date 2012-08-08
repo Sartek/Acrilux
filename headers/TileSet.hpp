@@ -11,12 +11,10 @@ class TileSet
 		~TileSet();
 		void loadTileSet(std::string file,int w,int h);
 		sf::Texture& getTile(int id);
-		int getWidth();
-		int getHeight();
+		sf::Vector2i getSize();
 	private:
 		sf::Image tileset;
-		int width;
-		int height;
+		sf::Vector2i size;
 		std::vector<sf::Texture> tiles;
 };
 

@@ -14,15 +14,15 @@ int Game::Start()
 	camera.reset(sf::FloatRect(0, 0, (float)Window.getSize().x, (float)Window.getSize().y));
 	tileset.loadTileSet("textures/tileset.png",32,32);
 
-	levelArea.resize(Window.getSize().x / tileset.getWidth() + (Window.getSize().x % tileset.getWidth() ? 0 : 1));
-    for (unsigned int x = 0; x <(Window.getSize().x / tileset.getWidth() + (Window.getSize().x % tileset.getWidth() ? 0 : 1)); x++)
+	levelArea.resize(Window.getSize().x / tileset.getSize().x + (Window.getSize().x % tileset.getSize().x ? 0 : 1));
+    for (unsigned int x = 0; x <(Window.getSize().x / tileset.getSize().x + (Window.getSize().x % tileset.getSize().x ? 0 : 1)); x++)
     {
-        levelArea.at(x).resize(Window.getSize().y / tileset.getHeight()+ (Window.getSize().y % tileset.getHeight() ? 2 : 3));
+        levelArea.at(x).resize(Window.getSize().y / tileset.getSize().y+ (Window.getSize().y % tileset.getSize().y ? 2 : 3));
     }
 
-	for(unsigned int x = 0; x <  (Window.getSize().x / tileset.getWidth() + (Window.getSize().x % tileset.getWidth() ? 0 : 1)); x++)
+	for(unsigned int x = 0; x <  (Window.getSize().x / tileset.getSize().x + (Window.getSize().x % tileset.getSize().x ? 0 : 1)); x++)
 	{
-		for (unsigned int y = 0; y < (Window.getSize().y / tileset.getHeight()+ (Window.getSize().y % tileset.getHeight() ? 2 : 3)); y++)
+		for (unsigned int y = 0; y < (Window.getSize().y / tileset.getSize().y+ (Window.getSize().y % tileset.getSize().y ? 2 : 3)); y++)
 		{
 			levelArea[x][y] = new sf::Sprite;
 		}
@@ -57,6 +57,15 @@ TextureManager& Game::GetTextureManager()
 {
 	return Textures;
 }
+Level& Game::GetLevel()
+{
+	return level;
+}
+
+sf::Vector2i Game::GetTileSetSize()
+{
+	return tileset.getSize();
+}
 
 void Game::PollEvent()
 {
@@ -88,15 +97,15 @@ void Game::Render()
 		sf::Vector2f _camera;
 		_camera.x = camera.getCenter().x - camera.getSize().x / 2;
 		_camera.y = camera.getCenter().y - camera.getSize().y / 2;
-		int width = tileset.getWidth();
-		int height = tileset.getHeight();
+		int width = tileset.getSize().x;
+		int height = tileset.getSize().y;
 
 		offset.x = (int)_camera.x % width;
 		offset.y = (int)_camera.y % height;
 
-		for(int x = 0;x<(int)(Window.getSize().x / tileset.getWidth()+ (Window.getSize().x % tileset.getWidth() ? 0 : 1));x++)
+		for(int x = 0;x<(int)(Window.getSize().x / width+ (Window.getSize().x % width ? 0 : 1));x++)
 		{
-			for(int y = 0;y<(int)(Window.getSize().y / tileset.getHeight()+ (Window.getSize().y % tileset.getHeight() ? 2 : 3));y++)
+			for(int y = 0;y<(int)(Window.getSize().y / height+ (Window.getSize().y % height ? 2 : 3));y++)
 			{
 				levelArea[x][y]->setPosition(x * width + _camera.x - offset.x,y * height + _camera.y - offset.y);
 				levelArea[x][y]->setTexture(tileset.getTile(level.getTile(((int)_camera.x - offset.x)/width+x,((int)_camera.y - offset.y)/height+y)));
