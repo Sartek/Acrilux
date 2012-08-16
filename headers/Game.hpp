@@ -19,7 +19,7 @@ public:
 	static int Start();
 	static sf::RenderWindow& GetWindow();
 	static TextureManager& GetTextureManager();
-	static Level& GetLevel();
+	static Level* GetLevel();
 	static sf::Vector2i GetTileSetSize();
 private:
 	static sf::RenderWindow Window;

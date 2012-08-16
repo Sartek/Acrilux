@@ -2,6 +2,7 @@
 #define LEVEL
 #include "../headers/Tile.hpp"
 #include <vector>
+#include <SFML/Graphics/Rect.hpp>
 
 
 class Level
@@ -10,6 +11,7 @@ class Level
 		Level();
 		~Level();
 		int getTile(int x,int y);
+		sf::Rect<float> getTileRect(int x,int y);
 		bool tileIsSolid(int x,int y);
 		int getWidth();
 		int getHeight();

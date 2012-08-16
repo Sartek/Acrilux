@@ -57,9 +57,9 @@ TextureManager& Game::GetTextureManager()
 {
 	return Textures;
 }
-Level& Game::GetLevel()
+Level* Game::GetLevel()
 {
-	return level;
+	return &level;
 }
 
 sf::Vector2i Game::GetTileSetSize()

@@ -1,0 +1,2 @@
+#define Acrilux_VERSION_MAJOR @Acrilux_VERSION_MAJOR@
+#define Acrilux_VERSION_MINOR @Acrilux_VERSION_MINOR@

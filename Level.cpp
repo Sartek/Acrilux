@@ -1,4 +1,5 @@
 #include "headers/Level.hpp"
+#include "headers/Game.hpp"
 
 Level::Level()
 {
@@ -38,6 +39,14 @@ int Level::getTile(int x,int y)
 		}
 	}
 	return 0;
+}
+sf::Rect<float> Level::getTileRect(int x,int y)
+{
+	int width = Game::GetTileSetSize().x;
+	int height = Game::GetTileSetSize().y;
+	int top = y*height;
+	int left = x*width;
+	return sf::Rect<float>(top,left,width,height);
 }
 int Level::getWidth()
 {

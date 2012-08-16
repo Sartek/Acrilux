@@ -14,12 +14,12 @@ void Player::Update(sf::Time dt)
 {
 	sf::Vector2i TileSize = Game::GetTileSetSize();
 	sf::Vector2i Tile;
-	Level level =  Game::GetLevel();
-	Tile.x = ((int)Player::getPosition().x /TileSize.x);
-	Tile.y = ((int)Player::getPosition().y /TileSize.y);
+	Level* level =  Game::GetLevel();
+	Tile.x = ((int)Player::getCenter().x /TileSize.x);
+	Tile.y = ((int)Player::getCenter().y /TileSize.y);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		if(level.tileIsSolid(Tile.x,Tile.y - 1)==0)
+		if(level->tileIsSolid(Tile.x,Tile.y - 1)==0)
 		{
 			Player::setVelocity(Player::getVelocity().x,-256);
 		}
@@ -30,7 +30,7 @@ void Player::Update(sf::Time dt)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		if(level.tileIsSolid(Tile.x,Tile.y + 1)==0)
+		if(level->tileIsSolid(Tile.x,Tile.y + 1)==0)
 		{
 			Player::setVelocity(Player::getVelocity().x,256);
 		}
@@ -45,7 +45,7 @@ void Player::Update(sf::Time dt)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		if(level.tileIsSolid(Tile.x - 1,Tile.y)==0)
+		if(level->tileIsSolid(Tile.x - 1,Tile.y)==0)
 		{
 			Player::setVelocity(-256,Player::getVelocity().y);
 		}
@@ -56,7 +56,7 @@ void Player::Update(sf::Time dt)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		if(level.tileIsSolid(Tile.x + 1,Tile.y)==0)
+		if(level->tileIsSolid(Tile.x + 1,Tile.y)==0)
 		{
 			Player::setVelocity(256,Player::getVelocity().y);
 		}
