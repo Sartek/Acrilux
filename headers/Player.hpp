@@ -1,7 +1,7 @@
 #ifndef PLAYER
 #define PLAYER
 #include "Object.hpp"
-#include "SFML\Graphics.hpp"
+#include "SFML/Graphics.hpp"
 class Player :
 	public Object
 {
