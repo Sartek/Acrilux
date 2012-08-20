@@ -196,3 +196,5 @@ Debug\*
 *.map
 *.tbp*
 *.idb
+*.cccc*
+gmon*

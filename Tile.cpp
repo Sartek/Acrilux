@@ -2,31 +2,31 @@
 
 Tile::Tile(int id,bool _solid)
 {
-	Tile::id = id;
-	Tile::solid = _solid;
+    Tile::id = id;
+    Tile::solid = _solid;
 }
 
 Tile::~Tile()
 {
-	//dtor
+    //dtor
 }
 
 int Tile::getID()
 {
-	return id;
+    return id;
 }
 
 void Tile::setID(int id)
 {
-	Tile::id = id;
+    Tile::id = id;
 }
 
 bool Tile::isSolid()
 {
-	return Tile::solid;
+    return Tile::solid;
 }
 
 void Tile::Solid(bool x)
 {
-	Tile::solid = x;
+    Tile::solid = x;
 }

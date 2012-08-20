@@ -16,27 +16,27 @@
 class Game
 {
 public:
-	static int Start();
-	static sf::RenderWindow& GetWindow();
-	static TextureManager& GetTextureManager();
-	static Level* GetLevel();
-	static sf::Vector2i GetTileSetSize();
+    static int Start();
+    static sf::RenderWindow& GetWindow();
+    static TextureManager& GetTextureManager();
+    static Level* GetLevel();
+    static sf::Vector2i GetTileSetSize();
 private:
-	static sf::RenderWindow Window;
-	static void PollEvent();
-	static void Render();
-	static void Update();
-	static void GameLoop();
-	static bool isExiting();
-	static TextureManager Textures;
-	static ObjectManager Objects;
-	static sf::Time dt;
-	static sf::Clock deltaClock;
-	static sf::View camera;
-	static Level level;
-	static TileSet tileset;
-	static bool exit;
-	static std::vector<std::vector<sf::Sprite*> > levelArea;
+    static sf::RenderWindow Window;
+    static void PollEvent();
+    static void Render();
+    static void Update();
+    static void GameLoop();
+    static bool isExiting();
+    static TextureManager Textures;
+    static ObjectManager Objects;
+    static sf::Time dt;
+    static sf::Clock deltaClock;
+    static sf::View camera;
+    static Level level;
+    static TileSet tileset;
+    static bool exit;
+    static std::vector<std::vector<sf::Sprite*> > levelArea;
 };
 
 

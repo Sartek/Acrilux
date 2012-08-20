@@ -4,6 +4,6 @@
 
 int main()
 {
-	std::cout << "Version " << Acrilux_VERSION_MAJOR << "." << Acrilux_VERSION_MINOR << std::endl;
+    std::cout << "Version " << Acrilux_VERSION_MAJOR << "." << Acrilux_VERSION_MINOR << std::endl;
     return Game::Start();
 }
