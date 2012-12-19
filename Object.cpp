@@ -3,9 +3,11 @@
 
 Object::Object() :
     _isLoaded(false)
-    drawable(false)
-    textureid(0)
+    //drawable(false)
+    //textureid(0)
 {
+    drawable = false;
+    textureid = 0;
 }
 
 Object::~Object()
