@@ -6,13 +6,13 @@ int Game::Start()
 
     exit = 0;
     sf::Image icon;
-    if (!icon.loadFromFile("textures/icon.bmp"))
+    if (!icon.loadFromFile("../textures/icon.bmp"))
         return 1;
     Window.setIcon(64,64,icon.getPixelsPtr());
 
-    Objects.newObject("Player",32,32,"Player",true,Textures.LoadTexture("textures/Player.png"));
+    Objects.newObject("Player",32,32,"Player",true,Textures.LoadTexture("../textures/Player.png"));
     camera.reset(sf::FloatRect(0, 0, (float)Window.getSize().x, (float)Window.getSize().y));
-    tileset.loadTileSet("textures/tileset.png",32,32);
+    tileset.loadTileSet("../textures/tileset.png",32,32);
 
     levelArea.resize(Window.getSize().x / tileset.getSize().x + 2);
     for (unsigned int x = 0; x <(Window.getSize().x / tileset.getSize().x + 2); x++)
