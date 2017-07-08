@@ -4,3 +4,4 @@ Add level loading support
 Add Physics cabable of working on 2d objects.
 Add Networking via udp with error detection.
 Add multithreading via the actor model or thread per component with shared data, locks and copies of data.
+Fix crashing in release mode and look for pointer related bugs
