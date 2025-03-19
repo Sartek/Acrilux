@@ -5,9 +5,8 @@ Object::Object() :
     _isLoaded(false)
     //drawable(false)
     //textureid(0)
+    , sprite(Game::GetTextureManager().GetTexture(0))
 {
-    drawable = false;
-    textureid = 0;
 }
 
 Object::~Object()
@@ -20,11 +19,10 @@ void Object::Load(float x,float y,bool draw,int texture_id)
     {
         _isLoaded = true;
         Object::setPosition(x,y);
-        BoundingBox.width = Object::sprite.getGlobalBounds().width;
-        BoundingBox.height = Object::sprite.getGlobalBounds().height;
+        BoundingBox.size = Object::sprite.getGlobalBounds().size;
 
         Object::drawable = draw;
-        Object::sprite.setPosition(Object::BoundingBox.left,Object::BoundingBox.top);
+        Object::sprite.setPosition(Object::BoundingBox.position);
         textureid = texture_id;
         Object::sprite.setTexture(Game::GetTextureManager().GetTexture(textureid));
     }
@@ -37,14 +35,13 @@ bool Object::isDrawable()
 
 void Object::setPosition(float x,float y)
 {
-    Object::BoundingBox.left = x;
-    Object::BoundingBox.top = y;
-    Object::sprite.setPosition(Object::BoundingBox.left,Object::BoundingBox.top);
+    Object::BoundingBox.position = {x,y};
+    Object::sprite.setPosition(Object::BoundingBox.position);
 }
 
 sf::Vector2f Object::getPosition()
 {
-    return sf::Vector2f(Object::BoundingBox.left,Object::BoundingBox.top);
+    return sf::Vector2f(Object::BoundingBox.position);
 }
 
 sf::Vector2f Object::getVelocity()
@@ -65,12 +62,12 @@ void Object::Update(sf::Time dt)
 
 float Object::getWidth()
 {
-    return BoundingBox.width;
+    return BoundingBox.size.x;
 }
 
 float Object::getHeight()
 {
-    return BoundingBox.height;
+    return BoundingBox.size.y;
 }
 
 sf::Rect<float> Object::getRect()
@@ -79,12 +76,12 @@ sf::Rect<float> Object::getRect()
 }
 sf::Rect<float> Object::getNextRect(sf::Time dt)
 {
-    return sf::Rect<float>(Object::getPosition().x + (Object::getVelocity().x * dt.asSeconds()),Object::getPosition().y + (Object::getVelocity().y * dt.asSeconds()),BoundingBox.width,BoundingBox.height);
+    return sf::Rect<float>({Object::getPosition().x + (Object::getVelocity().x * dt.asSeconds()),Object::getPosition().y + (Object::getVelocity().y * dt.asSeconds())},BoundingBox.size);
 }
 
 sf::Vector2f Object::getCenter()
 {
-    return sf::Vector2f(BoundingBox.left+(BoundingBox.width/2),BoundingBox.top+(BoundingBox.height/2));
+    return sf::Vector2f({BoundingBox.position.x + (BoundingBox.size.x / 2), BoundingBox.position.y + (BoundingBox.size.y / 2)});
 }
 
 int Object::textureID()

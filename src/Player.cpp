@@ -18,16 +18,16 @@ void Player::Update(sf::Time dt)
     Level* level =  Game::GetLevel();
     Tile.x = ((int)Player::getPosition().x /TileSize.x);
     Tile.y = ((int)Player::getPosition().y /TileSize.y);
-    Tile.x = ((int)Player::getNextRect(dt).left /TileSize.x);
-    Tile.y = ((int)Player::getNextRect(dt).top /TileSize.y);
+    Tile.x = ((int)Player::getNextRect(dt).position.x /TileSize.x);
+    Tile.y = ((int)Player::getNextRect(dt).position.y /TileSize.y);
     sf::Rect<float> PlayerNext;
     sf::Rect<float> TileRect;
     PlayerNext = Player::getNextRect(dt);
     TileRect = level->getTileRect(Tile.x,Tile.y-1);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
     {
-        if(level->tileIsSolid(Tile.x,Tile.y-1) && (PlayerNext.intersects(TileRect)))
+        if(level->tileIsSolid(Tile.x,Tile.y-1) && (PlayerNext.findIntersection(TileRect)))
         {
             Player::setVelocity(Player::getVelocity().x,0);
         }
@@ -36,7 +36,7 @@ void Player::Update(sf::Time dt)
             Player::setVelocity(Player::getVelocity().x,-256);
         }
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
     {
         if(level->tileIsSolid(Tile.x,Tile.y)==0)
         {
@@ -51,7 +51,7 @@ void Player::Update(sf::Time dt)
     {
         Player::setVelocity(Player::getVelocity().x,0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
     {
         if(level->tileIsSolid(Tile.x - 1,Tile.y)==0)
         {
@@ -62,7 +62,7 @@ void Player::Update(sf::Time dt)
             Player::setVelocity(0,Player::getVelocity().y);
         }
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
     {
         if(level->tileIsSolid(Tile.x + 1,Tile.y)==0)
         {

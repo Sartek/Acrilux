@@ -1,5 +1,5 @@
-local libSFML = "../../libaries/c++/bin/SFML/lib"
-local includeSFML = "../../libaries/c++/bin/SFML/include"
+local libSFML = "../dependencies/SFML/build/lib"
+local includeSFML = "../dependencies/SFML/include"
 
 workspace "Acrilux"
 	configurations { "Debug", "Release" }
@@ -7,7 +7,7 @@ workspace "Acrilux"
 	
 project "Acrilux"
 	location "build"
-	kind "WindowedApp"
+	kind "ConsoleApp"
 	language "C++"
 	targetdir "bin"
 	
@@ -24,7 +24,8 @@ project "Acrilux"
 		
 	filter "configurations:Release"
 		defines { "NDEBUG" }
-		flags { "LinkTimeOptimization" }
+		flags { }
+		linktimeoptimization "On"
 		optimize "Full"
 		links { "sfml-system", "sfml-window", "sfml-graphics" }
 		libdirs { libSFML }

@@ -2,16 +2,17 @@
 
 int Game::Start()
 {
-    Window.create(sf::VideoMode(1366,768,32),"Acrilux",sf::Style::Close);
+    Window.create(sf::VideoMode({1366,768},32),"Acrilux",sf::Style::Close);
 
     exit = 0;
     sf::Image icon;
     if (!icon.loadFromFile("../textures/icon.bmp"))
         return 1;
-    Window.setIcon(64,64,icon.getPixelsPtr());
+    Window.setIcon(icon);
 
     Objects.newObject("Player",32,32,"Player",true,Textures.LoadTexture("../textures/Player.png"));
-    camera.reset(sf::FloatRect(0, 0, (float)Window.getSize().x, (float)Window.getSize().y));
+    //camera.reset(sf::FloatRect(0, 0, (float)Window.getSize().x, (float)Window.getSize().y));
+    camera.setViewport(sf::FloatRect({0,0}, {(float)Window.getSize().x, (float)Window.getSize().y}));
     tileset.loadTileSet("../textures/tileset.png",32,32);
 
     levelArea.resize(Window.getSize().x / tileset.getSize().x + 2);
@@ -24,7 +25,7 @@ int Game::Start()
     {
         for (unsigned int y = 0; y < (Window.getSize().y / tileset.getSize().y + 2); y++)
         {
-            levelArea[x][y] = new sf::Sprite;
+            levelArea[x][y] = new sf::Sprite(tileset.getTile(0));
         }
     }
 
@@ -69,11 +70,10 @@ sf::Vector2i Game::GetTileSetSize()
 
 void Game::PollEvent()
 {
-    sf::Event event;
-    while (Window.pollEvent(event))
+    while (const std::optional event = Game::Window.pollEvent())
     {
-        if (event.type == sf::Event::Closed)
-            exit = 1;
+        if (event->is<sf::Event::Closed>())
+            Game::exit = true;
     }
 }
 
@@ -84,7 +84,7 @@ void Game::Update()
     {
         Objects.getObjectByID(i)->Update(dt);
     }
-    Game::camera.setCenter(Player->getPosition().x,Player->getPosition().y);//may not work
+    Game::camera.setCenter({Player->getPosition().x,Player->getPosition().y});//may not work
 }
 
 void Game::Render()
@@ -107,7 +107,7 @@ void Game::Render()
         {
             for(int y = 0; y<(int)(Window.getSize().y / height + 2); y++)
             {
-                levelArea[x][y]->setPosition(x * width + _camera.x - offset.x,y * height + _camera.y - offset.y);
+                levelArea[x][y]->setPosition({x * width + _camera.x - offset.x,y * height + _camera.y - offset.y});
                 levelArea[x][y]->setTexture(tileset.getTile(level.getTile(((int)_camera.x - offset.x)/width+x,((int)_camera.y - offset.y)/height+y)));
                 Game::Window.draw((*levelArea[x][y]));
             }

@@ -8,7 +8,6 @@ Tile::Tile(int id,bool _solid)
 
 Tile::~Tile()
 {
-    //dtor
 }
 
 int Tile::getID()

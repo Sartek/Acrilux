@@ -46,7 +46,7 @@ sf::Rect<float> Level::getTileRect(int x,int y)
     int height = Game::GetTileSetSize().y;
     int top = y*height;
     int left = x*width;
-    return sf::Rect<float>(top,left,width,height);
+    return sf::Rect<float>({float(left),float(top)},{float(width),float(height)});
 }
 int Level::getWidth()
 {
